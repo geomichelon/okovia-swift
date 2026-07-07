@@ -51,11 +51,45 @@ The contract lives in `packages/event-schema/schemas/sdk-config.schema.json`;
 this SDK's `RemoteConfig` decodes the same shared fixtures the backend
 validates, so drift is caught by tests on both sides.
 
+## Measuring local inference
+
+```swift
+let output = try Viking.inference(model: "coreml:sentiment-v2", computeUnit: .ane, feature: "inbox_triage") { m in
+    let result = try model.prediction(input: input)
+    m.setTokens(input: 96, output: 1)
+    return result
+}
+```
+
+Duration, declared compute unit, and thermal state are captured
+automatically; energy is reported when the platform can measure it
+(otherwise `energy_mj` is null).
+
+## Intercepting LLM API calls
+
+Calls made through `URLSession.shared` to hosts listed in the remote
+config's `intercept_hosts` are captured automatically after
+`Viking.start`. For a custom session:
+
+```swift
+let configuration = URLSessionConfiguration.default
+Viking.instrument(configuration)
+let session = URLSession(configuration: configuration)
+```
+
+Usage is parsed from OpenAI and Anthropic responses, including SSE
+streaming (for OpenAI streams, set `stream_options: {"include_usage": true}`
+to get exact counts; otherwise Viking estimates tokens and flags the
+event `estimated: true`). Anthropic `stop_reason: "refusal"` becomes its
+own `llm_refusal` event.
+
 ## Status
 
-Phase 1: package skeleton, `Viking.start`, config contract model, and
-embedded defaults. Remote config fetch, the event queue (SQLite,
-batching, gzip, backoff), and collectors are next.
+Phase 2: remote config (ETag/304, disk cache, foreground + 15 min
+refresh), SQLite-backed event queue (batching, gzip, exponential
+backoff, byte-cap trimming, config-driven sampling), LLM API
+interception, local inference tracking, and debug logging. Backend
+publish/ingest endpoints are next.
 
 ## Development
 

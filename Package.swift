@@ -12,6 +12,10 @@ let package = Package(
     ],
     targets: [
         .target(name: "Viking"),
-        .testTarget(name: "VikingTests", dependencies: ["Viking"])
+        .testTarget(
+            name: "VikingTests",
+            dependencies: ["Viking"],
+            resources: [.copy("Fixtures")]
+        )
     ]
 )
