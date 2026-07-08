@@ -144,17 +144,17 @@ final class EventQueue: ConfigApplying {
         logger.debug("flushing \(events.count) event(s) (\(reason))")
 
         let semaphore = DispatchSemaphore(value: 0)
-        var accepted = false
+        let result = ResultBox()
         let sender = self.sender
         let endpoint = config.transport.endpoint
         let apiKey = self.apiKey
         Task.detached {
-            accepted = await sender.send(body: compressed, endpoint: endpoint, apiKey: apiKey)
+            result.value = await sender.send(body: compressed, endpoint: endpoint, apiKey: apiKey)
             semaphore.signal()
         }
         semaphore.wait()
 
-        if accepted {
+        if result.value {
             consecutiveFailures = 0
             lastFailureAt = nil
             try? store.delete(rowIds: batch.map(\.rowId))
@@ -167,6 +167,15 @@ final class EventQueue: ConfigApplying {
     }
 
     private var lastFailureAt: Date?
+
+    /// Bridges the async `send` result back across the semaphore wait
+    /// below. The compiler can't see it, but the semaphore already
+    /// enforces happens-before ordering between the write (before
+    /// `signal()`) and the read (after `wait()` returns), so a plain var
+    /// capture would be safe - it's just not expressible to the checker.
+    private final class ResultBox: @unchecked Sendable {
+        var value = false
+    }
 
     func backoffDelay(failures: Int) -> TimeInterval {
         min(pow(2.0, Double(failures)), 300)
