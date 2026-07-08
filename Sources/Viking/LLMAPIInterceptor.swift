@@ -26,12 +26,13 @@ final class LLMCallRecorder: ConfigApplying {
 
     func record(
         host: String,
+        path: String = "",
         requestBodyChars: Int,
         responseBody: Data,
         contentType: String?,
         durationMs: Int
     ) {
-        guard let provider = LLMProvider.forHost(host) else { return }
+        guard let provider = LLMProvider.forRequest(host: host, path: path) else { return }
 
         var usage = parseUsage(provider: provider, body: responseBody, contentType: contentType)
 
@@ -183,6 +184,7 @@ public final class VikingURLProtocol: URLProtocol {
             if (200...299).contains(http.statusCode) {
                 Self.recorder?.record(
                     host: host,
+                    path: request.url?.path ?? "",
                     requestBodyChars: requestBodyCharCount(),
                     responseBody: buffer,
                     contentType: http.value(forHTTPHeaderField: "Content-Type"),

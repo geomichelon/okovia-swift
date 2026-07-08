@@ -118,3 +118,14 @@ final class UsageParserTests: XCTestCase {
         XCTAssertEqual(claudeTokens, 100)
     }
 }
+
+extension UsageParserTests {
+    func testForRequestInfersProviderFromPathOnLoopbackOnly() {
+        XCTAssertEqual(LLMProvider.forRequest(host: "localhost", path: "/v1/chat/completions"), .openai)
+        XCTAssertEqual(LLMProvider.forRequest(host: "127.0.0.1", path: "/v1/messages"), .anthropic)
+        XCTAssertNil(LLMProvider.forRequest(host: "localhost", path: "/unrelated"))
+        // Real hosts are never inferred from path - only from the host itself.
+        XCTAssertNil(LLMProvider.forRequest(host: "example.com", path: "/v1/chat/completions"))
+        XCTAssertEqual(LLMProvider.forRequest(host: "api.openai.com", path: "/anything"), .openai)
+    }
+}

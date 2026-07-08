@@ -33,6 +33,19 @@ enum LLMProvider: String {
         if host.contains("anthropic") { return .anthropic }
         return nil
     }
+
+    /// Loopback convenience: developers who point intercept_hosts at a
+    /// local mock server (no real provider credentials yet) still get
+    /// real parsing exercised. Only activates for localhost/127.0.0.1 -
+    /// never for real traffic - and infers the shape from the request
+    /// path, matching each provider's actual endpoint convention.
+    static func forRequest(host: String, path: String) -> LLMProvider? {
+        if let provider = forHost(host) { return provider }
+        guard host == "localhost" || host == "127.0.0.1" else { return nil }
+        if path.contains("messages") { return .anthropic }
+        if path.contains("chat/completions") { return .openai }
+        return nil
+    }
 }
 
 // MARK: - OpenAI
