@@ -33,7 +33,7 @@ final class RemoteConfigContractTests: XCTestCase {
         XCTAssertEqual(config.collectors.llmApi?.capturePromptContent, false)
         XCTAssertEqual(config.collectors.llmLocal?.frameworks, ["coreml", "mlx"])
         XCTAssertEqual(config.collectors.gpuSampling?.enabled, false)
-        XCTAssertEqual(config.transport.endpoint.absoluteString, "https://ingest.viking.io/v1/ingest")
+        XCTAssertEqual(config.transport.endpoint.absoluteString, "https://api.okovia.com/v1/ingest")
         XCTAssertEqual(config.transport.batchMaxEvents, 50)
         XCTAssertEqual(config.transport.samplingRate, 1.0)
         XCTAssertEqual(config.privacy.redactFields, ["prompt", "completion"])

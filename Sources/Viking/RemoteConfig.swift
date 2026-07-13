@@ -136,7 +136,7 @@ extension RemoteConfig {
                 ocr: .init(enabled: false)
             ),
             transport: Transport(
-                endpoint: URL(string: "https://ingest.viking.io/v1/ingest")!,
+                endpoint: URL(string: "https://api.okovia.com/v1/ingest")!,
                 batchMaxEvents: 50,
                 flushIntervalS: 30,
                 samplingRate: 1.0,

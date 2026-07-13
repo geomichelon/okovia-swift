@@ -51,7 +51,7 @@ final class RemoteConfigManager {
     ) {
         self.fetcher = fetcher
         self.logger = logger
-        let base = options.configURL ?? URL(string: "https://config.viking.io")!
+        let base = options.configURL ?? URL(string: "https://api.okovia.com")!
         self.configURL = base
             .appendingPathComponent("v1/projects")
             .appendingPathComponent(apiKey)

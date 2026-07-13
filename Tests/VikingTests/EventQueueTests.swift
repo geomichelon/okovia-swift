@@ -60,7 +60,7 @@ final class EventQueueTests: XCTestCase {
                 ocr: .init(enabled: false)
             ),
             transport: RemoteConfig.Transport(
-                endpoint: URL(string: "https://ingest.viking.io/v1/ingest")!,
+                endpoint: URL(string: "https://api.okovia.com/v1/ingest")!,
                 batchMaxEvents: batchMax,
                 flushIntervalS: 3600,
                 samplingRate: samplingRate,
