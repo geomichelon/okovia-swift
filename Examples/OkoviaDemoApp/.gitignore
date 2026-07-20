@@ -1,0 +1,8 @@
+# Xcode / SwiftPM user state — the .xcodeproj itself is committed so the
+# demo opens with a double-click, but per-user and build artifacts are not.
+xcuserdata/
+*.xcuserstate
+DerivedData/
+.build/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/

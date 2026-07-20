@@ -1,0 +1,456 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1B96DFF6F1E6FCA781631687 /* DemoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885EC2746AD860168293F1D2 /* DemoConfig.swift */; };
+		25CDCE63D72953296187BB12 /* DemoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885EC2746AD860168293F1D2 /* DemoConfig.swift */; };
+		84963E6486F095805ED030CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7C9EEEA40D1A8553EE28B4 /* ContentView.swift */; };
+		9B5098BE152DC3F9159FCAFB /* OkoviaIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBABDE9DA6B95F87425CD7B6 /* OkoviaIntegration.swift */; };
+		A58F688D09866A1F9C3FE33B /* OkoviaIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBABDE9DA6B95F87425CD7B6 /* OkoviaIntegration.swift */; };
+		A6DB45BBCB096D2B896EB64E /* Okovia in Frameworks */ = {isa = PBXBuildFile; productRef = 978AA43318A9D0A1F631BD9D /* Okovia */; };
+		D3D37A0EC640EEDEC9219954 /* OkoviaDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C55E7D7C7A9EDF094757CDA /* OkoviaDemoApp.swift */; };
+		D7B8FE32DBA50DC641FBAE87 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7C9EEEA40D1A8553EE28B4 /* ContentView.swift */; };
+		F1EF06B84119C434ECF0F26A /* Okovia in Frameworks */ = {isa = PBXBuildFile; productRef = CCBCD75423D837D0EE2A74EF /* Okovia */; };
+		F64624566D0F8AF3AA2486A9 /* OkoviaDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C55E7D7C7A9EDF094757CDA /* OkoviaDemoApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A7C9EEEA40D1A8553EE28B4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2C5A09A94403C392A8CC9EE9 /* viking-swift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "viking-swift"; path = ../..; sourceTree = SOURCE_ROOT; };
+		3C55E7D7C7A9EDF094757CDA /* OkoviaDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkoviaDemoApp.swift; sourceTree = "<group>"; };
+		589100F8965C8869316DD23C /* OkoviaDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OkoviaDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		885EC2746AD860168293F1D2 /* DemoConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoConfig.swift; sourceTree = "<group>"; };
+		A3EC5DF6C11C12645B37B151 /* OkoviaDemoApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = OkoviaDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBABDE9DA6B95F87425CD7B6 /* OkoviaIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkoviaIntegration.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0AEE288F9DD1B4846885E469 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1EF06B84119C434ECF0F26A /* Okovia in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F79ABF9E61BFC7006AF4C19 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6DB45BBCB096D2B896EB64E /* Okovia in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		62EA735841E8C520247693C7 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				2C5A09A94403C392A8CC9EE9 /* viking-swift */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		8EE952F3E90BA38B7A15065C = {
+			isa = PBXGroup;
+			children = (
+				62EA735841E8C520247693C7 /* Packages */,
+				F3B18D1170470D001895C687 /* Sources */,
+				D2DF3B4F837F23CDF46EEA0C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D2DF3B4F837F23CDF46EEA0C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A3EC5DF6C11C12645B37B151 /* OkoviaDemoApp.app */,
+				589100F8965C8869316DD23C /* OkoviaDemoApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F3B18D1170470D001895C687 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				1A7C9EEEA40D1A8553EE28B4 /* ContentView.swift */,
+				885EC2746AD860168293F1D2 /* DemoConfig.swift */,
+				3C55E7D7C7A9EDF094757CDA /* OkoviaDemoApp.swift */,
+				DBABDE9DA6B95F87425CD7B6 /* OkoviaIntegration.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		799B9BA37D0BD50691E08C2A /* OkoviaDemoApp_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8FCC004D58902A415B39DCE /* Build configuration list for PBXNativeTarget "OkoviaDemoApp_macOS" */;
+			buildPhases = (
+				59941FA105CA331D55DD47D2 /* Sources */,
+				0AEE288F9DD1B4846885E469 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OkoviaDemoApp_macOS;
+			packageProductDependencies = (
+				CCBCD75423D837D0EE2A74EF /* Okovia */,
+			);
+			productName = OkoviaDemoApp_macOS;
+			productReference = 589100F8965C8869316DD23C /* OkoviaDemoApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FF942F62E4CE555708FFDF67 /* OkoviaDemoApp_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D85F5A2B097D7A36A37B8367 /* Build configuration list for PBXNativeTarget "OkoviaDemoApp_iOS" */;
+			buildPhases = (
+				DEAF58D0BE0AB5ECF22FE11E /* Sources */,
+				9F79ABF9E61BFC7006AF4C19 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OkoviaDemoApp_iOS;
+			packageProductDependencies = (
+				978AA43318A9D0A1F631BD9D /* Okovia */,
+			);
+			productName = OkoviaDemoApp_iOS;
+			productReference = A3EC5DF6C11C12645B37B151 /* OkoviaDemoApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2B89493AD70680AFE9E42C7F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					799B9BA37D0BD50691E08C2A = {
+						ProvisioningStyle = Automatic;
+					};
+					FF942F62E4CE555708FFDF67 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = D0C330D4414588B84099FFD9 /* Build configuration list for PBXProject "OkoviaDemoApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 8EE952F3E90BA38B7A15065C;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A6A85B8CCFFE62CC05B09D59 /* XCLocalSwiftPackageReference "../.." */,
+			);
+			preferredProjectObjectVersion = 54;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF942F62E4CE555708FFDF67 /* OkoviaDemoApp_iOS */,
+				799B9BA37D0BD50691E08C2A /* OkoviaDemoApp_macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		59941FA105CA331D55DD47D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7B8FE32DBA50DC641FBAE87 /* ContentView.swift in Sources */,
+				1B96DFF6F1E6FCA781631687 /* DemoConfig.swift in Sources */,
+				D3D37A0EC640EEDEC9219954 /* OkoviaDemoApp.swift in Sources */,
+				A58F688D09866A1F9C3FE33B /* OkoviaIntegration.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEAF58D0BE0AB5ECF22FE11E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84963E6486F095805ED030CE /* ContentView.swift in Sources */,
+				25CDCE63D72953296187BB12 /* DemoConfig.swift in Sources */,
+				F64624566D0F8AF3AA2486A9 /* OkoviaDemoApp.swift in Sources */,
+				9B5098BE152DC3F9159FCAFB /* OkoviaIntegration.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B8B6EADCD8335CC36E62C9D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		BB98094E31F064536EED00E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.okovia.demo.app;
+				PRODUCT_NAME = OkoviaDemoApp;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C0CF9CF5A271226124D1D750 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C9B1A3A4C859BAE03B925E50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.okovia.demo.app;
+				PRODUCT_NAME = OkoviaDemoApp;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		E8675EAB7D0E37E6F45D2878 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.okovia.demo.app;
+				PRODUCT_NAME = OkoviaDemoApp;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		F22379222AE813DA3E974780 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.okovia.demo.app;
+				PRODUCT_NAME = OkoviaDemoApp;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D0C330D4414588B84099FFD9 /* Build configuration list for PBXProject "OkoviaDemoApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0CF9CF5A271226124D1D750 /* Debug */,
+				B8B6EADCD8335CC36E62C9D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D85F5A2B097D7A36A37B8367 /* Build configuration list for PBXNativeTarget "OkoviaDemoApp_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F22379222AE813DA3E974780 /* Debug */,
+				BB98094E31F064536EED00E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D8FCC004D58902A415B39DCE /* Build configuration list for PBXNativeTarget "OkoviaDemoApp_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9B1A3A4C859BAE03B925E50 /* Debug */,
+				E8675EAB7D0E37E6F45D2878 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		A6A85B8CCFFE62CC05B09D59 /* XCLocalSwiftPackageReference "../.." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../..;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		978AA43318A9D0A1F631BD9D /* Okovia */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Okovia;
+		};
+		CCBCD75423D837D0EE2A74EF /* Okovia */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Okovia;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 2B89493AD70680AFE9E42C7F /* Project object */;
+}

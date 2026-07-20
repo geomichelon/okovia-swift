@@ -1,0 +1,49 @@
+# XcodeGen spec — the source of truth for OkoviaDemoApp.xcodeproj.
+# Regenerate the project with:  xcodegen generate   (or: make project)
+name: OkoviaDemoApp
+options:
+  bundleIdPrefix: com.okovia.demo
+  deploymentTarget:
+    iOS: "16.0"
+    macOS: "13.0"
+
+# The OkOvia Swift SDK dependency.
+#
+# This example lives inside the SDK repo, so it points at the local package
+# (../..) — it builds offline with no version pinning. In YOUR OWN app you'd
+# instead add the published package (File → Add Package Dependencies…):
+#
+#   https://github.com/geomichelon/okovia-swift.git   (Up to Next Major, 0.1.0)
+#
+# …then depend on the "Okovia" product exactly as below.
+packages:
+  OkoviaSDK:
+    path: ../..
+
+targets:
+  OkoviaDemoApp:
+    type: application
+    platform: [iOS, macOS]
+    sources:
+      - Sources
+    info:
+      path: Resources/Info.plist
+      properties:
+        CFBundleDisplayName: OkOvia Demo
+        UILaunchScreen: {}
+        # Allow plain-http to the local mock LLM server (localhost). Remove
+        # once llmEndpoint points at an https provider.
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.okovia.demo.app
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        GENERATE_INFOPLIST_FILE: NO
+        SWIFT_VERSION: "5.9"
+        CODE_SIGNING_ALLOWED: NO
+        CODE_SIGN_STYLE: Automatic
+    dependencies:
+      - package: OkoviaSDK
+        product: Okovia
