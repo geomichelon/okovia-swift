@@ -6,6 +6,11 @@ struct ParsedLLMUsage: Equatable {
     var inputTokens: Int?
     var outputTokens: Int?
     var cachedInputTokens: Int?
+    // Cost-category fields matching the canonical event (parity with the
+    // Python SDK): cache WRITES (Anthropic bills them above fresh input)
+    // and reasoning/thinking tokens priced apart from plain output.
+    var cacheWriteTokens: Int?
+    var reasoningTokens: Int?
     var stopReason: String?
     var estimated: Bool = false
 
@@ -17,6 +22,12 @@ struct ParsedLLMUsage: Equatable {
         if let outputTokens { units["output_tokens"] = outputTokens }
         if let cachedInputTokens, cachedInputTokens > 0 {
             units["cached_input_tokens"] = cachedInputTokens
+        }
+        if let cacheWriteTokens, cacheWriteTokens > 0 {
+            units["cache_write_tokens"] = cacheWriteTokens
+        }
+        if let reasoningTokens, reasoningTokens > 0 {
+            units["reasoning_tokens"] = reasoningTokens
         }
         return units
     }
@@ -78,6 +89,7 @@ enum OpenAIUsageParser {
                 if chunk.inputTokens != nil { current.inputTokens = chunk.inputTokens }
                 if chunk.outputTokens != nil { current.outputTokens = chunk.outputTokens }
                 if chunk.cachedInputTokens != nil { current.cachedInputTokens = chunk.cachedInputTokens }
+                if chunk.reasoningTokens != nil { current.reasoningTokens = chunk.reasoningTokens }
                 if chunk.stopReason != nil { current.stopReason = chunk.stopReason }
                 merged = current
             }
@@ -99,6 +111,11 @@ enum OpenAIUsageParser {
             usage.outputTokens = usageObject["completion_tokens"] as? Int
             if let details = usageObject["prompt_tokens_details"] as? [String: Any] {
                 usage.cachedInputTokens = details["cached_tokens"] as? Int
+            }
+            // Reasoning tokens (o1/o3/gpt-5 families) are billed apart
+            // from plain completion tokens.
+            if let outDetails = usageObject["completion_tokens_details"] as? [String: Any] {
+                usage.reasoningTokens = outDetails["reasoning_tokens"] as? Int
             }
         }
 
@@ -167,6 +184,10 @@ enum AnthropicUsageParser {
         if let output = usageObject["output_tokens"] as? Int { usage.outputTokens = output }
         if let cached = usageObject["cache_read_input_tokens"] as? Int {
             usage.cachedInputTokens = cached
+        }
+        // Anthropic bills cache CREATION (writes) above fresh input.
+        if let cacheWrite = usageObject["cache_creation_input_tokens"] as? Int {
+            usage.cacheWriteTokens = cacheWrite
         }
     }
 }

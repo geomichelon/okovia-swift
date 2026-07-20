@@ -103,6 +103,28 @@ final class RecorderAndTrackerTests: XCTestCase {
         XCTAssertEqual(event.units?["cached_input_tokens"], 2048)
         XCTAssertEqual(event.compute?.durationMs, 3200)
         XCTAssertNil(event.estimated, "provider-reported usage is not estimated")
+        // Contract parity: provider reported usage -> stream complete.
+        XCTAssertEqual(event.attrs?["stream_status"], .string("complete"))
+    }
+
+    func testStreamStatusAndPromptHashOnRecordedEvent() throws {
+        let recorder = LLMCallRecorder(queue: queue, config: testConfig(), logger: VikingLogger(enabled: false))
+
+        // No usage in the body -> estimation fallback -> usage_missing.
+        recorder.record(
+            host: "api.openai.com",
+            path: "/v1/chat/completions",
+            requestBodyChars: 800,
+            responseBody: Data("hello".utf8),
+            contentType: "application/json",
+            durationMs: 500,
+            promptPrefixHash: "pfx_abc123"
+        )
+
+        let event = try XCTUnwrap(try storedEvents().first)
+        XCTAssertEqual(event.attrs?["stream_status"], .string("usage_missing"))
+        XCTAssertEqual(event.attrs?["prompt_prefix_hash"], .string("pfx_abc123"))
+        XCTAssertEqual(event.estimated, true)
     }
 
     func testAnthropicRefusalBecomesItsOwnEventCategory() throws {

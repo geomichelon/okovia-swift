@@ -120,6 +120,53 @@ final class UsageParserTests: XCTestCase {
 }
 
 extension UsageParserTests {
+    // MARK: - Cost-category parity (cache writes, reasoning tokens)
+
+    func testOpenAIReasoningTokensParsedAndEmitted() throws {
+        let json = Data("""
+        {"model":"o3","choices":[{"finish_reason":"stop"}],
+         "usage":{"prompt_tokens":100,"completion_tokens":900,
+           "completion_tokens_details":{"reasoning_tokens":640}}}
+        """.utf8)
+        let usage = try XCTUnwrap(OpenAIUsageParser.parse(json: json))
+        XCTAssertEqual(usage.reasoningTokens, 640)
+        XCTAssertEqual(usage.units["reasoning_tokens"], 640)
+    }
+
+    func testAnthropicCacheWriteTokensParsedAndEmitted() throws {
+        let json = Data("""
+        {"model":"claude-sonnet-4-6","stop_reason":"end_turn",
+         "usage":{"input_tokens":400,"output_tokens":120,
+           "cache_creation_input_tokens":2048,"cache_read_input_tokens":0}}
+        """.utf8)
+        let usage = try XCTUnwrap(AnthropicUsageParser.parse(json: json))
+        XCTAssertEqual(usage.cacheWriteTokens, 2048)
+        XCTAssertEqual(usage.units["cache_write_tokens"], 2048)
+    }
+
+    func testZeroCacheWriteAndReasoningAreOmittedFromUnits() throws {
+        // The stock fixtures carry zeros - they must not clutter units.
+        let usage = try XCTUnwrap(OpenAIUsageParser.parse(json: fixture("openai-chat-completion.json")))
+        XCTAssertNil(usage.units["reasoning_tokens"])
+        let anthropic = try XCTUnwrap(AnthropicUsageParser.parse(json: fixture("anthropic-message.json")))
+        XCTAssertNil(anthropic.units["cache_write_tokens"])
+    }
+
+    // MARK: - On-device prompt hashing (cache-off rule signal)
+
+    func testPromptHasherIsSaltedStableAndContentFree() {
+        let body = Data("SYSTEM: you are a helpful assistant. CONTEXT: ...".utf8)
+        let a = PromptHasher.prefixHash(of: body, salt: "install-1")
+        let b = PromptHasher.prefixHash(of: body, salt: "install-1")
+        let other = PromptHasher.prefixHash(of: body, salt: "install-2")
+        XCTAssertEqual(a, b)
+        XCTAssertNotEqual(a, other)
+        XCTAssertEqual(a?.hasPrefix("pfx_"), true)
+        XCTAssertEqual(a?.count, 36)
+        XCTAssertEqual(PromptHasher.prefixHash(of: Data(), salt: "x"), nil)
+        XCTAssertEqual(PromptHasher.prefixHash(of: body, salt: ""), nil)
+    }
+
     func testForRequestInfersProviderFromPathOnLoopbackOnly() {
         XCTAssertEqual(LLMProvider.forRequest(host: "localhost", path: "/v1/chat/completions"), .openai)
         XCTAssertEqual(LLMProvider.forRequest(host: "127.0.0.1", path: "/v1/messages"), .anthropic)

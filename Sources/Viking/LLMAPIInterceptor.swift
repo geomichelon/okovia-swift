@@ -30,11 +30,15 @@ final class LLMCallRecorder: ConfigApplying {
         requestBodyChars: Int,
         responseBody: Data,
         contentType: String?,
-        durationMs: Int
+        durationMs: Int,
+        // Salted on-device hash of the request-body prefix (never the
+        // content). Feeds the cache-off recommendation rule.
+        promptPrefixHash: String? = nil
     ) {
         guard let provider = LLMProvider.forRequest(host: host, path: path) else { return }
 
         var usage = parseUsage(provider: provider, body: responseBody, contentType: contentType)
+        let providerReportedUsage = usage?.inputTokens != nil
 
         // Fallback estimation (~4 chars/token with a per-model-family
         // factor) when the provider reported no usage - e.g. OpenAI
@@ -64,13 +68,24 @@ final class LLMCallRecorder: ConfigApplying {
         // refusal cost/frequency is analyzable per feature.
         let category: VikingEvent.Category = usage.isRefusal ? .llmRefusal : .llmInference
 
+        // Contract parity with the other SDKs: whether the provider
+        // reported usage (complete) or we had to estimate (usage_missing).
+        var attrs: [String: VikingEvent.AttrValue] = [:]
+        if let stopReason = usage.stopReason {
+            attrs["stop_reason"] = .string(stopReason)
+        }
+        attrs["stream_status"] = .string(providerReportedUsage ? "complete" : "usage_missing")
+        if let promptPrefixHash {
+            attrs["prompt_prefix_hash"] = .string(promptPrefixHash)
+        }
+
         let event = VikingEvent(
             category: category,
             execution: .api,
             resource: usage.model ?? provider.rawValue,
             units: usage.units.isEmpty ? nil : usage.units,
             compute: .init(durationMs: durationMs),
-            attrs: usage.stopReason.map { ["stop_reason": .string($0)] },
+            attrs: attrs.isEmpty ? nil : attrs,
             estimated: usage.estimated ? true : nil
         )
         queue.enqueue(event)
@@ -188,11 +203,22 @@ public final class VikingURLProtocol: URLProtocol {
                     requestBodyChars: requestBodyCharCount(),
                     responseBody: buffer,
                     contentType: http.value(forHTTPHeaderField: "Content-Type"),
-                    durationMs: durationMs
+                    durationMs: durationMs,
+                    promptPrefixHash: promptPrefixHash()
                 )
             }
         }
         client?.urlProtocolDidFinishLoading(self)
+    }
+
+    /// Salted on-device hash of the request-body prefix. Only computed
+    /// from an in-memory httpBody (Data); a streamed body is read once
+    /// for the char count, so we skip hashing it rather than consume the
+    /// stream twice. The content is hashed and immediately discarded -
+    /// only the digest is emitted.
+    private func promptPrefixHash() -> String? {
+        guard let body = request.httpBody, !body.isEmpty else { return nil }
+        return PromptHasher.prefixHash(of: body, salt: DeviceIdentity.installId())
     }
 
     /// Character count only - the body content is never retained.
