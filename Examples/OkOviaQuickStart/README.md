@@ -54,5 +54,5 @@ into cost and margin.
 
 ## Full-featured demo
 
-For an end-to-end demo with a local stack and a mock LLM provider, see the
-sibling [`VikingDemo`](../VikingDemo) example.
+For a ready-to-run Xcode app (iOS + macOS) with buttons and a mock LLM
+provider, see the sibling [`OkoviaDemoApp`](../OkoviaDemoApp) example.

@@ -3,7 +3,7 @@
 demo when no real OpenAI/Anthropic credentials are configured.
 
 Responds with a real OpenAI chat.completion JSON shape (including
-usage/cached tokens), so the demo exercises Viking's actual
+usage/cached tokens), so the demo exercises the OkOvia SDK's actual
 interception + parsing code path end to end - only the network
 endpoint is local. Point real intercept_hosts at api.openai.com /
 api.anthropic.com in production; this is a development convenience
