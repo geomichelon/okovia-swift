@@ -1,27 +1,39 @@
-# Viking Swift SDK
+# OkOvia Swift SDK
 
 Cost observability SDK for AI workloads on Apple platforms
 (macOS 13+ / iOS 16+). Measures LLM API calls, on-device inference
 (Core ML, MLX), OCR, and GPU compute - and ships raw usage events to
-Viking, where cost is calculated server-side from your cost rules.
+OkOvia, where cost is calculated server-side from your cost rules.
 
-Package: `VikingSDK` · library target: `Viking` · `sdk.name`: `viking-swift`
+Package: `OkoviaSDK` · library products: `Okovia` (umbrella) and `Viking`
+(back-compat) · `sdk.name`: `viking-swift`
 
 ## Install
 
-Add the package to your project:
+Swift Package Manager — add the public repo:
 
 ```swift
-.package(path: "../viking-swift") // Swift Package Manager
+.package(url: "https://github.com/geomichelon/okovia-swift.git", from: "1.0.0")
+```
+
+…then depend on the `Okovia` product. Working inside this monorepo, use the
+local path instead:
+
+```swift
+.package(path: "../viking-swift")
 ```
 
 ## Usage
 
 ```swift
-import Viking
+import Okovia
 
 try Viking.start(apiKey: "vik_pub_your_key")
 ```
+
+`import Okovia` re-exports everything, so you don't also need `import
+Viking`. The historical `import Viking` still works unchanged for
+back-compat, and the entry point stays `Viking.start(...)`.
 
 `Viking.start` requires the project's **public** key (`vik_pub_...`).
 Secret keys (`vik_sec_...`) are server-side only and are rejected at
@@ -98,3 +110,7 @@ swift test
 # with Command Line Tools only, point at a full Xcode:
 DEVELOPER_DIR=/Applications/Xcode26.app/Contents/Developer swift test
 ```
+
+## License
+
+MIT - see [LICENSE](./LICENSE).
